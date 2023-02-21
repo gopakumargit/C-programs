@@ -1,97 +1,91 @@
 #include<stdio.h>
 #include<stdlib.h>
- 
 void insertion();
 void deletion();
 void display();
-int F=-1,R=-1,item,size=8,A[30];
+int front=-1,rear=-1,item,size=3,a[10];
 void main()
 {
 int opt;
-printf("enter your size of queue:...\t");
-scanf("%d",&size);
 do
 {
-printf("\nenter your option\n1.insertion\n2.deletion\n3.display\n4.exit\n");
+printf("Enter your option:\n 1.insertion\n 2.deletion\n 3.display\n 4.exit\n");
 scanf("%d",&opt);
 switch(opt)
 {
-case 1:
-     insertion();
-     break;
-case 2:
-     deletion();
-     break;
-case 3:
-	 display();
-	 break;
-case 4:
-	 exit;
+case 1:insertion();
+break;
+case 2:deletion();
+break;
+case 3:display();
+break;
+case 4:exit(0);
+break;
+default:printf("invalid entry\n");
 }
+}while(opt!=4);
 }
-while(opt!=4);
-}
-
-
 void insertion()
 {
-if(F==(R+1)%size)
+if(front==(rear+1)%size)
 {
-printf("\nqueue is full\n");
+printf("Queue is full");
 }
 else
 {
-printf("\nenter the data to be inserted...:");
+printf("Enter the item to be inserted:");
 scanf("%d",&item);
-}
-if(F==-1&&R==-1)
+if(front==-1 && rear==-1)
 {
-F=0;
-R=0;
-A[R]=item;
+front=0;
+rear=0;
+a[rear]=item;
 }
 else
 {
-R=(R+1)%size;
-A[R]=item;
+rear=(rear+1)%size;
+a[rear]=item;
 }
 }
-
- void deletion()
-{
-if(F==-1)
-{
-printf("\nqueue is empty");
 }
-else if(F==0&&R==0)
+void deletion()
 {
-printf("\ndeleted elements...: %d",A[F]);
-F=R=-1;
+if(front==-1)
+{
+printf("No elements");
+}
+else if(front==rear)
+{
+printf("The element to be deleted is %d",a[front]);
+front=rear=-1;
 }
 else
 {
-printf("\nitem to be deleted...: %d",A[F]);
-F=(F+1)%size;
+printf("The element to be deleted is %d",a[front]);
+front=(front+1)%size;
 }
-} 
-
-
+}
 void display()
 {
 int i;
-i=F;
-if(i==-1&&R==-1)
+if((front==-1)&&(rear==-1))
 {
-printf("\nqueue is empty");
+printf("no elements");
+}
+else
+{ 
+printf("Elements are :\n");
+if (front<rear)
+{
+for(i=front;i<=rear;i++)
+printf("%d",a[i]);
 }
 else
 {
-printf("\nelemets are...:\t");
-while(i>-1)
-{
-printf("%d\t",A[i]);
-if(i==r)
-break;
-i=(i+1)%size;
+for(i=front;i<size;i++)
+printf("%d",a[i]);
+for(i=0;i<=rear;i++)
+printf("%d",a[i]);
 }
-}}
+}
+}
